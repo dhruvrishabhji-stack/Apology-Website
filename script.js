@@ -3,7 +3,7 @@
 ================================================== */
 
 const API_URL =
-    "https://YOUR_PROJECT_ID.supabase.co/functions/v1/apology";
+    "https://lkxehnmnbmlewsagppew.supabase.co/functions/v1/apology";
 
 
 /* ==================================================
