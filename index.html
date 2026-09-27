@@ -1,38 +1,319 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <title>Just One More Sorry 💖</title>
 
-    <title>Friend 💖</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", Arial, sans-serif;
+        }
 
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ffe4ec, #e9ddff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            color: #3d2940;
+        }
 
+        /* Floating hearts */
+
+        .heart {
+            position: fixed;
+            bottom: -30px;
+            font-size: 25px;
+            animation: floatHeart linear forwards;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Main container */
+
+        .container {
+            width: 92%;
+            max-width: 650px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.94);
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(100, 60, 100, 0.18);
+            text-align: center;
+            animation: cardIn 0.7s ease;
+        }
+
+        @keyframes cardIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .emoji {
+            font-size: 70px;
+            margin-bottom: 10px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%,100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        h1 {
+            color: #d94f82;
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+
+        h2 {
+            margin-bottom: 15px;
+            color: #6d4267;
+        }
+
+        p {
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        /* Form */
+
+        .form-group {
+            text-align: left;
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: 600;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            border: 2px solid #f0c8d8;
+            border-radius: 15px;
+            padding: 13px 15px;
+            outline: none;
+            font-size: 15px;
+            background: #fffafd;
+            transition: 0.3s;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: #d94f82;
+            box-shadow: 0 0 0 4px rgba(217,79,130,0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 130px;
+        }
+
+        /* Buttons */
+
+        .btn {
+            border: none;
+            border-radius: 30px;
+            padding: 13px 25px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .primary {
+            background: #d94f82;
+            color: white;
+            box-shadow: 0 8px 20px rgba(217,79,130,0.25);
+        }
+
+        .forgive {
+            background: #69c98b;
+            color: white;
+        }
+
+        .reject {
+            background: #f2d8df;
+            color: #91435c;
+        }
+
+        .small-btn {
+            margin-top: 12px;
+            background: #eee2f7;
+            color: #684d7c;
+        }
+
+        /* Apology message */
+
+        .message-box {
+            background: linear-gradient(135deg, #fff3f7, #f8f0ff);
+            border-radius: 22px;
+            padding: 25px;
+            margin: 25px 0;
+            border: 2px solid #f3d8e5;
+            text-align: left;
+        }
+
+        .message-box p {
+            white-space: pre-wrap;
+            margin-bottom: 0;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        /* Rejection area */
+
+        .response {
+            margin-top: 25px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .response h2 {
+            color: #d94f82;
+        }
+
+        /* Success */
+
+        .success {
+            display: none;
+        }
+
+        .success .emoji {
+            font-size: 90px;
+        }
+
+        .confetti {
+            position: fixed;
+            top: -20px;
+            font-size: 25px;
+            animation: fall 3s linear forwards;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) rotate(720deg);
+            }
+        }
+
+        /* Link box */
+
+        .link-box {
+            display: none;
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 18px;
+            background: #f8f0ff;
+        }
+
+        .link-input {
+            display: flex;
+            gap: 8px;
+        }
+
+        .link-input input {
+            flex: 1;
+        }
+
+        /* Mobile */
+
+        @media(max-width:600px) {
+
+            .card {
+                padding: 25px 18px;
+            }
+
+            h1 {
+                font-size: 27px;
+            }
+
+            .emoji {
+                font-size: 55px;
+            }
+
+            .link-input {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
     <div id="floatingHearts"></div>
 
-    <main class="container">
+    <div class="container">
 
-        <!-- =========================
-             CREATOR
-        ========================== -->
+        <!-- CREATOR PAGE -->
 
-        <section
-            class="card"
-            id="creatorPage"
-        >
+        <div class="card" id="creatorPage">
 
             <div class="emoji">🥺💗</div>
 
@@ -46,74 +327,43 @@
             <form id="apologyForm">
 
                 <div class="form-group">
-
-                    <label for="sender">
-                        Your Name
-                    </label>
-
+                    <label>Your Name</label>
                     <input
+                        type="text"
                         id="sender"
-                        type="text"
                         placeholder="Enter your name"
-                        maxlength="100"
                         required
                     >
-
                 </div>
 
-
                 <div class="form-group">
-
-                    <label for="receiver">
-                        Friend's Name
-                    </label>
-
+                    <label>Friend's Name</label>
                     <input
-                        id="receiver"
                         type="text"
+                        id="receiver"
                         placeholder="Enter your friend's name"
-                        maxlength="100"
                         required
                     >
-
                 </div>
 
-
                 <div class="form-group">
-
-                    <label for="message">
-                        Your Apology
-                    </label>
-
+                    <label>Your Apology</label>
                     <textarea
                         id="message"
                         placeholder="Write what you want to say..."
-                        maxlength="5000"
                         required
                     ></textarea>
-
                 </div>
 
-
-                <button
-                    class="btn primary"
-                    id="createButton"
-                    type="submit"
-                >
+                <button class="btn primary" type="submit">
                     Create Apology Link 💌
                 </button>
 
             </form>
 
+            <div class="link-box" id="linkBox">
 
-            <div
-                class="link-box"
-                id="linkBox"
-            >
-
-                <h3>
-                    Your apology is ready! 💖
-                </h3>
+                <h3>Your apology is ready! 💖</h3>
 
                 <p>
                     Copy this link and send it to your friend.
@@ -122,15 +372,14 @@
                 <div class="link-input">
 
                     <input
-                        id="generatedLink"
                         type="text"
+                        id="generatedLink"
                         readonly
                     >
 
                     <button
                         class="btn primary"
-                        id="copyButton"
-                        type="button"
+                        onclick="copyLink()"
                     >
                         Copy
                     </button>
@@ -141,74 +390,50 @@
 
             </div>
 
-
-            <p
-                class="error"
-                id="creatorError"
-            ></p>
-
-        </section>
+        </div>
 
 
-        <!-- =========================
-             RECEIVER
-        ========================== -->
+        <!-- RECEIVER PAGE -->
 
-        <section
-            class="card"
-            id="receiverPage"
-            style="display:none;"
-        >
+        <div class="card" id="receiverPage" style="display:none;">
 
             <div id="apologyScreen">
 
-                <div
-                    class="emoji"
-                    id="mainEmoji"
-                >
+                <div class="emoji" id="mainEmoji">
                     🥺
                 </div>
-
 
                 <h1 id="receiverTitle">
                     Hey...
                 </h1>
 
-
                 <p id="introText"></p>
 
-
                 <div class="message-box">
-
                     <p id="apologyMessage"></p>
-
                 </div>
-
 
                 <p id="question">
                     Will you forgive me? 🥺
                 </p>
 
-
                 <div class="buttons">
 
                     <button
                         class="btn forgive"
-                        id="forgiveButton"
+                        onclick="forgive()"
                     >
                         I forgive you 💖
                     </button>
 
-
                     <button
                         class="btn reject"
-                        id="rejectButton"
+                        onclick="notForgive()"
                     >
                         I don't forgive you 😤
                     </button>
 
                 </div>
-
 
                 <div
                     class="response"
@@ -218,14 +443,9 @@
             </div>
 
 
-            <!-- =========================
-                 SUCCESS
-            ========================== -->
+            <!-- SUCCESS -->
 
-            <div
-                class="success"
-                id="successScreen"
-            >
+            <div class="success" id="successScreen">
 
                 <div class="emoji">
                     🥹💖
@@ -247,19 +467,355 @@
 
             </div>
 
+        </div>
 
-            <div
-                class="error"
-                id="receiverError"
-            ></div>
-
-        </section>
-
-    </main>
+    </div>
 
 
-    <script src="script.js"></script>
+<script>
+
+    /* =========================================
+       GET ELEMENTS
+    ========================================= */
+
+    const creatorPage = document.getElementById("creatorPage");
+    const receiverPage = document.getElementById("receiverPage");
+
+    const form = document.getElementById("apologyForm");
+
+    const linkBox = document.getElementById("linkBox");
+    const generatedLink = document.getElementById("generatedLink");
+
+    const senderInput = document.getElementById("sender");
+    const receiverInput = document.getElementById("receiver");
+    const messageInput = document.getElementById("message");
+
+
+    /* =========================================
+       CHECK WHETHER THIS IS AN APOLOGY LINK
+    ========================================= */
+
+    function checkPage() {
+
+        const params = new URLSearchParams(
+            window.location.search
+        );
+
+        const sender = params.get("from");
+        const receiver = params.get("to");
+        const message = params.get("message");
+
+        if (sender && receiver && message) {
+
+            creatorPage.style.display = "none";
+            receiverPage.style.display = "block";
+
+            document.getElementById("receiverTitle").textContent =
+                `${receiver}, someone wants to say sorry... 🥺`;
+
+            document.getElementById("introText").textContent =
+                `${sender} has something to tell you.`;
+
+            document.getElementById("apologyMessage").textContent =
+                message;
+
+            window.apologyData = {
+                sender,
+                receiver,
+                message
+            };
+        }
+    }
+
+
+    /* =========================================
+       CREATE APOLOGY LINK
+    ========================================= */
+
+    form.addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        const sender =
+            senderInput.value.trim();
+
+        const receiver =
+            receiverInput.value.trim();
+
+        const message =
+            messageInput.value.trim();
+
+        if (!sender || !receiver || !message) {
+            return;
+        }
+
+        const params = new URLSearchParams();
+
+        params.set("from", sender);
+        params.set("to", receiver);
+        params.set("message", message);
+
+        const link =
+            window.location.origin +
+            window.location.pathname +
+            "?" +
+            params.toString();
+
+        generatedLink.value = link;
+
+        linkBox.style.display = "block";
+
+        linkBox.scrollIntoView({
+            behavior: "smooth"
+        });
+
+    });
+
+
+    /* =========================================
+       COPY LINK
+    ========================================= */
+
+    function copyLink() {
+
+        navigator.clipboard.writeText(
+            generatedLink.value
+        );
+
+        document.getElementById("copyMessage").textContent =
+            "Copied! Now send it to your friend 💌";
+
+    }
+
+
+    /* =========================================
+       FORGIVE
+    ========================================= */
+
+    function forgive() {
+
+        document.getElementById("apologyScreen").style.display =
+            "none";
+
+        document.getElementById("successScreen").style.display =
+            "block";
+
+        document.getElementById("successText").textContent =
+            `${window.apologyData.sender} can finally breathe again! 😭💗`;
+
+        createConfetti();
+
+    }
+
+
+    /* =========================================
+       NOT FORGIVE
+    ========================================= */
+
+    let rejectionLevel = 0;
+
+    const rejectionResponses = [
+
+        {
+            emoji: "🥺",
+            title: "Wait... really? 😭",
+            text: "I know you're still angry, but please give me another chance. 🥺"
+        },
+
+        {
+            emoji: "😔",
+            title: "Okay... I understand.",
+            text: "But I really mean my apology. Can we at least talk about it? 💔"
+        },
+
+        {
+            emoji: "🐶",
+            title: "Look at this face... 🥺",
+            text: "How can you stay angry after seeing this level of cuteness? 😭"
+        },
+
+        {
+            emoji: "🧎",
+            title: "Okay okay... I'm begging.",
+            text: "I admit it. I messed up. Please forgive me. 🙏"
+        },
+
+        {
+            emoji: "😭",
+            title: "MY HEART 💔",
+            text: "You've rejected my apology so many times that I'm emotionally buffering..."
+        },
+
+        {
+            emoji: "🥹",
+            title: "One last chance?",
+            text: "I promise I'll try to do better. Friends? 🥺🤝"
+        },
+
+        {
+            emoji: "💀",
+            title: "You really won't forgive me?!",
+            text: "Okay... this friendship is now officially under negotiation. 😭"
+        }
+
+    ];
+
+
+    function notForgive() {
+
+        rejectionLevel++;
+
+        const response =
+            document.getElementById("response");
+
+        if (rejectionLevel >= rejectionResponses.length) { response.innerHTML = ` <h2>You really won't forgive me?! 😭</h2> <p> Okay... this friendship is now officially under negotiation. 😭 </p> <button class="btn forgive" onclick="forgive()" > Okay, I forgive you ${window.apologyData.sender} 💖 </button> `; return; }
+
+        const current =
+            rejectionResponses[
+                Math.min(
+                    rejectionLevel - 1,
+                    rejectionResponses.length - 1
+                )
+            ];
+
+        document.getElementById("mainEmoji").textContent =
+            current.emoji;
+
+        response.innerHTML = `
+
+            <h2>${current.title}</h2>
+
+            <p>${current.text}</p>
+
+            <button
+                class="btn forgive"
+                onclick="forgive()"
+            >
+                Okay... I forgive you 💖
+            </button>
+
+            <button
+                class="btn reject small-btn"
+                onclick="notForgive()"
+            >
+                Still no 😤
+            </button>
+
+        `;
+
+        response.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+
+    }
+
+
+    /* =========================================
+       FLOATING HEARTS
+    ========================================= */
+
+    function createHeart() {
+
+        const heart =
+            document.createElement("div");
+
+        heart.className = "heart";
+
+        const hearts = [
+            "💗",
+            "💖",
+            "💕",
+            "💓",
+            "🌸",
+            "✨"
+        ];
+
+        heart.textContent =
+            hearts[
+                Math.floor(
+                    Math.random() * hearts.length
+                )
+            ];
+
+        heart.style.left =
+            Math.random() * 100 + "vw";
+
+        heart.style.animationDuration =
+            (4 + Math.random() * 5) + "s";
+
+        heart.style.fontSize =
+            (15 + Math.random() * 20) + "px";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 9000);
+
+    }
+
+
+    setInterval(createHeart, 700);
+
+
+    /* =========================================
+       CONFETTI
+    ========================================= */
+
+    function createConfetti() {
+
+        const symbols = [
+            "💖",
+            "💕",
+            "🎉",
+            "✨",
+            "🌸",
+            "🥳",
+            "💗"
+        ];
+
+        for (let i = 0; i < 70; i++) {
+
+            const confetti =
+                document.createElement("div");
+
+            confetti.className = "confetti";
+
+            confetti.textContent =
+                symbols[
+                    Math.floor(
+                        Math.random() * symbols.length
+                    )
+                ];
+
+            confetti.style.left =
+                Math.random() * 100 + "vw";
+
+            confetti.style.animationDuration =
+                (2 + Math.random() * 3) + "s";
+
+            confetti.style.animationDelay =
+                Math.random() * 1.5 + "s";
+
+            document.body.appendChild(confetti);
+
+            setTimeout(() => {
+                confetti.remove();
+            }, 5000);
+
+        }
+
+    }
+
+
+    /* =========================================
+       START
+    ========================================= */
+
+    checkPage();
+
+</script>
 
 </body>
-
 </html>
