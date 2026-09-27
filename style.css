@@ -1,0 +1,564 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", Arial, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffe4ec,
+            #e9ddff
+        );
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow-x: hidden;
+
+    color: #3d2940;
+}
+
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container {
+    width: 92%;
+    max-width: 650px;
+
+    position: relative;
+    z-index: 2;
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+.card {
+
+    background: rgba(
+        255,
+        255,
+        255,
+        0.94
+    );
+
+    border-radius: 30px;
+
+    padding: 40px;
+
+    box-shadow:
+        0 20px 60px
+        rgba(
+            100,
+            60,
+            100,
+            0.18
+        );
+
+    text-align: center;
+
+    animation:
+        cardIn
+        0.7s
+        ease;
+}
+
+
+@keyframes cardIn {
+
+    from {
+        opacity: 0;
+        transform:
+            translateY(30px)
+            scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+}
+
+
+/* =========================
+   EMOJI
+========================= */
+
+.emoji {
+
+    font-size: 70px;
+
+    margin-bottom: 10px;
+
+    animation:
+        bounce
+        2s
+        infinite;
+}
+
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform:
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translateY(-10px);
+    }
+
+}
+
+
+/* =========================
+   TEXT
+========================= */
+
+h1 {
+
+    color: #d94f82;
+
+    margin-bottom: 10px;
+
+    font-size: 32px;
+}
+
+
+h2 {
+
+    margin-bottom: 15px;
+
+    color: #6d4267;
+}
+
+
+p {
+
+    line-height: 1.7;
+
+    margin-bottom: 20px;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+.form-group {
+
+    text-align: left;
+
+    margin-bottom: 18px;
+}
+
+
+label {
+
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-weight: 600;
+}
+
+
+input,
+textarea {
+
+    width: 100%;
+
+    border:
+        2px solid
+        #f0c8d8;
+
+    border-radius: 15px;
+
+    padding: 13px 15px;
+
+    outline: none;
+
+    font-size: 15px;
+
+    background: #fffafd;
+
+    transition: 0.3s;
+}
+
+
+input:focus,
+textarea:focus {
+
+    border-color: #d94f82;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(
+            217,
+            79,
+            130,
+            0.1
+        );
+}
+
+
+textarea {
+
+    resize: vertical;
+
+    min-height: 130px;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.btn {
+
+    border: none;
+
+    border-radius: 30px;
+
+    padding: 13px 25px;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.25s;
+}
+
+
+.btn:hover {
+
+    transform:
+        translateY(-3px);
+}
+
+
+.primary {
+
+    background: #d94f82;
+
+    color: white;
+
+    box-shadow:
+        0 8px 20px
+        rgba(
+            217,
+            79,
+            130,
+            0.25
+        );
+}
+
+
+.forgive {
+
+    background: #69c98b;
+
+    color: white;
+}
+
+
+.reject {
+
+    background: #f2d8df;
+
+    color: #91435c;
+}
+
+
+.small-btn {
+
+    margin-top: 12px;
+
+    background: #eee2f7;
+
+    color: #684d7c;
+}
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+.message-box {
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff3f7,
+            #f8f0ff
+        );
+
+    border-radius: 22px;
+
+    padding: 25px;
+
+    margin: 25px 0;
+
+    border:
+        2px solid
+        #f3d8e5;
+
+    text-align: left;
+}
+
+
+.message-box p {
+
+    white-space: pre-wrap;
+
+    margin-bottom: 0;
+}
+
+
+/* =========================
+   BUTTON GROUP
+========================= */
+
+.buttons {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+
+    margin-top: 20px;
+}
+
+
+/* =========================
+   RESPONSE
+========================= */
+
+.response {
+
+    margin-top: 25px;
+
+    animation:
+        fadeIn
+        0.5s
+        ease;
+}
+
+
+@keyframes fadeIn {
+
+    from {
+        opacity: 0;
+        transform:
+            scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            scale(1);
+    }
+
+}
+
+
+/* =========================
+   SUCCESS
+========================= */
+
+.success {
+
+    display: none;
+}
+
+
+.success .emoji {
+
+    font-size: 90px;
+}
+
+
+/* =========================
+   LINK
+========================= */
+
+.link-box {
+
+    display: none;
+
+    margin-top: 25px;
+
+    padding: 20px;
+
+    border-radius: 18px;
+
+    background: #f8f0ff;
+}
+
+
+.link-input {
+
+    display: flex;
+
+    gap: 8px;
+}
+
+
+.link-input input {
+
+    flex: 1;
+}
+
+
+/* =========================
+   ERRORS
+========================= */
+
+.error {
+
+    color: #c0395b;
+
+    margin-top: 15px;
+
+    font-weight: 600;
+}
+
+
+/* =========================
+   FLOATING HEARTS
+========================= */
+
+.heart {
+
+    position: fixed;
+
+    bottom: -30px;
+
+    font-size: 25px;
+
+    animation:
+        floatHeart
+        linear
+        forwards;
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+
+@keyframes floatHeart {
+
+    0% {
+        transform:
+            translateY(0)
+            rotate(0deg);
+
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    100% {
+
+        transform:
+            translateY(-110vh)
+            rotate(360deg);
+
+        opacity: 0;
+    }
+
+}
+
+
+/* =========================
+   CONFETTI
+========================= */
+
+.confetti {
+
+    position: fixed;
+
+    top: -20px;
+
+    font-size: 25px;
+
+    animation:
+        fall
+        3s
+        linear
+        forwards;
+
+    pointer-events: none;
+
+    z-index: 10;
+}
+
+
+@keyframes fall {
+
+    to {
+
+        transform:
+            translateY(110vh)
+            rotate(720deg);
+    }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .card {
+
+        padding:
+            25px 18px;
+    }
+
+    h1 {
+
+        font-size: 27px;
+    }
+
+    .emoji {
+
+        font-size: 55px;
+    }
+
+    .link-input {
+
+        flex-direction:
+            column;
+    }
+
+    .btn {
+
+        width: 100%;
+    }
+
+}
